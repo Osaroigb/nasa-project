@@ -1,17 +1,13 @@
 import app from '../../app.js';
 import request from 'supertest';
-import Jasmine from 'jasmine';
+import { loadPlanetsData } from '../../models/planets.model.js'
 import { mongoConnect, mongoDisconnect } from '../../services/mongo.js';
 
-const jasmine = new Jasmine();
-
 describe('Launches API', () => {
-
-    // jest.setTimeOut(30000);
     
     beforeAll(async () => {
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
         await mongoConnect();
+        await loadPlanetsData();
     });
 
     afterAll(async () => await mongoDisconnect());
