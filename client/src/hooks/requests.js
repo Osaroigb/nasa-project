@@ -1,14 +1,14 @@
-const API_URL = 'http://localhost:3300';
+const API_URL = 'v1';
 
 // Load planets and return as JSON.
 async function httpGetPlanets() {  
-  const response = await fetch(`${API_URL}/v1/planets`);
+  const response = await fetch(`${API_URL}/planets`);
   return await response.json();
 }
 
 // Load launches, sort by flight number, and return as JSON.
 async function httpGetLaunches() {
-  const response = await fetch(`${API_URL}/v1/launches`);
+  const response = await fetch(`${API_URL}/launches`);
   const fetchedLaunches = await response.json();
 
   return fetchedLaunches.sort((a, b) => {
@@ -21,7 +21,7 @@ async function httpSubmitLaunch(launch) {
 
   try {
 
-    return await fetch(`${API_URL}/v1/launches`, {
+    return await fetch(`${API_URL}/launches`, {
       method: 'post',
       body: JSON.stringify(launch),
       headers: {
@@ -39,7 +39,7 @@ async function httpAbortLaunch(id) {
 
   try {
 
-    return await fetch(`${API_URL}/v1/launches/${id}`, {
+    return await fetch(`${API_URL}/launches/${id}`, {
       method: 'delete'
     });
   } catch(err) {
